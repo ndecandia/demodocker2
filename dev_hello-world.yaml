@@ -1,0 +1,8 @@
+version: "3"
+services:
+  node:
+    image: "dtr.deso.tech/docker-datacenter/hellonode"
+    environment:
+      - NODE_ENV=test
+    expose:
+      - "8080:8000"
