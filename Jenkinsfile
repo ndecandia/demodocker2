@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("admin/macnil/hellonode")
+        app = docker.build("docker-datacenter/macnil/hellonode")
     }
 
     stage('Test image') {
