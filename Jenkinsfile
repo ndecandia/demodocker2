@@ -43,7 +43,8 @@ node {
                     } catch (err) {
                         echo "Error: ${err}" // catach and move on if it doesn't already exist
                     }
-                sh "pwd"    
+                sh "pwd" 
+                sh "ls -Fla"   
                 sh "docker stack deploy \
                     --compose-file=${params.ENVIRONMENT}_hello-world.yml ${params.ENVIRONMENT}_hello-world"
                 }
