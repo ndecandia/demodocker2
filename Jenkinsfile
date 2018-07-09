@@ -1,6 +1,9 @@
 node {
     def app
-
+    properties([parameters([
+        choice(choices: ["dev", "prd"].join("\n"),
+            description: 'Environment', name: 'ENVIRONMENT')
+    ])])
             stage('Clone repository') {
             /* Let's make sure we have the repository cloned to our workspace */
 
@@ -11,7 +14,7 @@ node {
                 /* This builds the actual image; synonymous to
                 * docker build on the command line */
 
-                app = docker.build("dtr.deso.tech/docker-datacenter/hellonode")
+                app = docker.build("dtr.deso.tech/docker-datacenter/hellonode2")
             }
 
             stage('Test image') {
@@ -31,7 +34,19 @@ node {
                 docker.withRegistry('https://dtr.deso.tech', 'docker-deso-credentials') {
                     app.push("${env.BUILD_NUMBER}")
                     app.push("latest")
-                }
             }
+
+            stage('Docker Stack Deploy') {
+                try {
+                        sh "docker stack rm ${params.ENVIRONMENT}_hello-world"
+                        sh 'sleep 30s' // wait for service to be completely removed if it exists
+                    } catch (err) {
+                        echo "Error: ${err}" // catach and move on if it doesn't already exist
+                    }
+                sh "docker stack deploy \
+                    --compose-file=docker-compose.yml ${params.ENVIRONMENT}_hello-world"
+                }
+
         }
+    }
 
