@@ -44,7 +44,7 @@ node {
                         echo "Error: ${err}" // catach and move on if it doesn't already exist
                     }
                 sh "docker stack deploy \
-                    --compose-file=docker-compose.yml ${params.ENVIRONMENT}_hello-world"
+                    --compose-file=${params.ENVIRONMENT}_hello-world.yml ${params.ENVIRONMENT}_hello-world"
                 }
 
         }
