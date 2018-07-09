@@ -1,19 +1,6 @@
 node {
     def app
 
- stages {
-        stage('Read Jenkinsfile') {
-            when {
-                expression { return parameters.Refresh == true }
-            }
-            steps {
-                echo("Ended pipeline early.")        
-            }
-        }
-        stage('Run Jenkinsfile') {
-            when {
-                expression { return parameters.Refresh == false }
-            }
             stage('Clone repository') {
             /* Let's make sure we have the repository cloned to our workspace */
 
@@ -47,5 +34,4 @@ node {
                 }
             }
         }
-    }
-}
+
