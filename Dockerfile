@@ -3,6 +3,8 @@ FROM node:7-onbuild
 
 # set maintainer
 LABEL maintainer "n.decandia@desotech.it"
+LABEL name "hello-world"
+LABEL version "undefined"
 
 # set a health check
 HEALTHCHECK --interval=5s \

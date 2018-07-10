@@ -3,6 +3,6 @@ services:
   node:
     image: "dtr.deso.tech/docker-datacenter/prd_hellonode2"
     environment:
-      - NODE_ENV=test
+      - NODE_ENV=prd
     ports:
       - "10000:8000"
