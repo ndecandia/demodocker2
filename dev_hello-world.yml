@@ -1,7 +1,7 @@
 version: "3"
 services:
   node:
-    image: "dtr.deso.tech/docker-datacenter/dev_hellonode"
+    image: "dtr.deso.tech/docker-datacenter/dev_hellonode2"
     environment:
       - NODE_ENV=test
     ports:
