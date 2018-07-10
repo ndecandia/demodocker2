@@ -14,7 +14,7 @@ node {
                 /* This builds the actual image; synonymous to
                 * docker build on the command line */
 
-                app = docker.build("dtr.deso.tech/docker-datacenter/hellonode2")
+                app = docker.build("dtr.deso.tech/docker-datacenter/${params.ENVIRONMENT}_hellonode2")
             }
 
             stage('Test image') {
